@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Seagull-Medium';
+    src: url('../public/Seagull-Medium.otf') format('otf');
+    font-weight: 600;
+    font-style: normal;
+}
+
+form > label, 
+form > div > label {
+    display: block;
+    padding: 5px;
+}
