@@ -5,8 +5,10 @@
     font-style: normal;
 }
 
-form > label, 
-form > div > label {
-    display: block;
-    padding: 5px;
+.ant-form-item {
+    margin-bottom: 10px;
+}
+
+#image-upload-container {
+    width: 300px;
 }

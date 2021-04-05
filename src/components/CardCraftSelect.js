@@ -1,21 +1,22 @@
 import React from 'react';
+import { Select } from 'antd';
+
+const { Option } = Select;
 
 class CardCraftSelect extends React.Component {
     render() {
         return (
-            <label for="card-craft-select">Craft:
-                <select name="clan" id="card-craft-select">
-                    <option value="0">Neutral</option>
-                    <option value="1">Forestcraft</option>
-                    <option value="2">Swordcraft</option>
-                    <option value="3">Runecraft</option>
-                    <option value="4">Dragoncraft</option>
-                    <option value="5">Shadowcraft</option>
-                    <option value="6">Bloodcraft</option>
-                    <option value="7">Havencraft</option>
-                    <option value="8">Portalcraft</option>
-                </select>
-            </label>    
+            <Select defaultValue="0" style={{ width: 150 }} name="clan" id="card-craft-select">
+                <Option value="0">Neutral</Option>
+                <Option value="1">Forestcraft</Option>
+                <Option value="2">Swordcraft</Option>
+                <Option value="3">Runecraft</Option>
+                <Option value="4">Dragoncraft</Option>
+                <Option value="5">Shadowcraft</Option>
+                <Option value="6">Bloodcraft</Option>
+                <Option value="7">Havencraft</Option>
+                <Option value="8">Portalcraft</Option>
+            </Select>
         )
     }
 }

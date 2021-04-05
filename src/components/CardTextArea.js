@@ -1,19 +1,12 @@
 import React from 'react';
+import { Input } from 'antd';
+
+const { TextArea } = Input;
 
 class CardTextArea extends React.Component {
     render() {
         return (
-            <div>
-                <label for="card-text-textarea">Base Card Text:
-                    <textarea name="skill_disc" id="card-text-textarea" placeholder="Base Card Text">
-                    </textarea>
-                </label>
-
-                <label for="card-evotext-textarea">Evo Card Text:
-                    <textarea name="evo_skill_disc" id="card-evotext-textarea" placeholder="Evo Card Text">
-                    </textarea>
-                </label>
-            </div>
+            <TextArea rows={5} style={{ width: 300 }} name={this.props.name} id={this.props.htmlID} placeholder={this.placeholder} />
         )
     }
 }

@@ -1,11 +1,10 @@
 import React from 'react';
+import { InputNumber } from 'antd';
 
 class CardCostInput extends React.Component {
     render() {
         return (
-            <label>Cost:
-                <input type="number" name="cost" placeholder="pp cost" min="0" />
-            </label>
+            <InputNumber type="number" name="cost" id="card-cost-input" min={0} defaultValue={0} />
         )
     }
 }

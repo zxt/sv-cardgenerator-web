@@ -1,18 +1,25 @@
 import React from 'react';
+import { InputNumber } from 'antd';
 
 class CardStatsInput extends React.Component {
     render() {
         return (
             <div>
-                <label>Base Stats:
-                    <input type="number" name="atk" placeholder="Atk" min="0" />
-                    <input type="number" name="life" placeholder="Def" min="0" />
-                </label>
-                <label>Evo Stats:
-                    <input type="number" name="evo_atk" placeholder="Evo Atk" min="0" />
-                    <input type="number" name="evo_life" placeholder="Evo Def" min="0" />
-                </label>
-            </div>      
+                <InputNumber
+                    type="number"
+                    id={this.props.name1}
+                    name={this.props.name1}
+                    placeholder={this.props.placeholder1}
+                    min={0}
+                />
+                <InputNumber
+                    type="number"
+                    id={this.props.name2}
+                    name={this.props.name2}
+                    placeholder={this.props.placeholder2}
+                    min={0}
+                />
+            </div>
         )
     }
 }
