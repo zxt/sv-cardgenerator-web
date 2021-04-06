@@ -1,22 +1,65 @@
 import React from 'react';
-import { Select } from 'antd';
-
-const { Option } = Select;
+import { Radio, Tooltip } from 'antd';
+import NeutralIcon from '../../public/templates/cards/craft_icons/neutral.png';
+import ForestIcon from '../../public/templates/cards/craft_icons/forest.png';
+import SwordIcon from '../../public/templates/cards/craft_icons/sword.png';
+import RuneIcon from '../../public/templates/cards/craft_icons/rune.png';
+import DragonIcon from '../../public/templates/cards/craft_icons/dragon.png';
+import ShadowIcon from '../../public/templates/cards/craft_icons/shadow.png';
+import BloodIcon from '../../public/templates/cards/craft_icons/blood.png';
+import HavenIcon from '../../public/templates/cards/craft_icons/haven.png';
+import PortalIcon from '../../public/templates/cards/craft_icons/portal.png';
 
 class CardCraftSelect extends React.Component {
     render() {
         return (
-            <Select defaultValue="0" style={{ width: 150 }} name="clan" id="card-craft-select">
-                <Option value="0">Neutral</Option>
-                <Option value="1">Forestcraft</Option>
-                <Option value="2">Swordcraft</Option>
-                <Option value="3">Runecraft</Option>
-                <Option value="4">Dragoncraft</Option>
-                <Option value="5">Shadowcraft</Option>
-                <Option value="6">Bloodcraft</Option>
-                <Option value="7">Havencraft</Option>
-                <Option value="8">Portalcraft</Option>
-            </Select>
+            <Radio.Group defaultValue="0" name="clan" id="card-craft-select">
+                <Radio value="0">
+                    <Tooltip title="Neutral">
+                        <img src={NeutralIcon} />
+                    </Tooltip>
+                </Radio>
+                <Radio value="1">
+                    <Tooltip title="Forestcraft">
+                        <img src={ForestIcon} />
+                    </Tooltip>
+                </Radio>
+                <Radio value="2">
+                    <Tooltip title="Swordcraft">
+                        <img src={SwordIcon} />
+                    </Tooltip>
+                </Radio>
+                <Radio value="3">
+                    <Tooltip title="Runecraft">
+                        <img src={RuneIcon} />
+                    </Tooltip>
+                </Radio>
+                <Radio value="4">
+                    <Tooltip title="Dragoncraft">
+                        <img src={DragonIcon} />
+                    </Tooltip>
+                </Radio>
+                <Radio value="5">
+                    <Tooltip title="Shadowcraft">
+                        <img src={ShadowIcon} />
+                    </Tooltip>
+                </Radio>
+                <Radio value="6">
+                    <Tooltip title="Bloodcraft">
+                        <img src={BloodIcon} />
+                    </Tooltip>
+                </Radio>
+                <Radio value="7">
+                    <Tooltip title="Havencraft">
+                        <img src={HavenIcon} />
+                    </Tooltip>
+                </Radio>
+                <Radio value="8">
+                    <Tooltip title="Portalcraft">
+                        <img src={PortalIcon} />
+                    </Tooltip>
+                </Radio>
+            </Radio.Group>
         )
     }
 }

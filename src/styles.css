@@ -5,10 +5,25 @@
     font-style: normal;
 }
 
+#image-upload-container {
+    width: 300px;
+}
+
 .ant-form-item {
     margin-bottom: 10px;
 }
 
-#image-upload-container {
-    width: 300px;
+#card-craft-select .ant-radio-inner,
+#card-craft-select .ant-radio-inner:after {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+}
+
+#card-craft-select .ant-radio-wrapper-checked {
+    border: 2px dashed #84bef5;
+}
+
+#card-craft-select .ant-radio-wrapper:hover {
+    background-color: #dfd;
 }
