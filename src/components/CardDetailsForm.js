@@ -6,8 +6,9 @@ import CardCraftSelect from './CardCraftSelect.js';
 import CardRaritySelect from './CardRaritySelect.js';
 import CardStatsInput from './CardStatsInput.js';
 import CardTextArea from './CardTextArea.js';
-import CardImageInput from './CardImageInput.js';
 import CardCostInput from './CardCostInput.js';
+import CardArtUpload from './CardArtUpload.js';
+import CardBackgroundSelect from './CardBackgroundSelect.js';
 
 class CardDetailsForm extends React.Component {
     render() {
@@ -54,8 +55,13 @@ class CardDetailsForm extends React.Component {
                 </Form.Item>
 
                 <Form.Item>
-                    <CardImageInput />
+                    <CardArtUpload />
                 </Form.Item>
+
+                <Form.Item>
+                    <CardBackgroundSelect />
+                </Form.Item>
+
             </Form>
         )
     }
