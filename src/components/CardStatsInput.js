@@ -11,6 +11,7 @@ class CardStatsInput extends React.Component {
                     name={this.props.name1}
                     placeholder={this.props.placeholder1}
                     min={0}
+                    disabled={this.props.cardType == 1 ? false : true}
                 />
                 <InputNumber
                     type="number"
@@ -18,6 +19,7 @@ class CardStatsInput extends React.Component {
                     name={this.props.name2}
                     placeholder={this.props.placeholder2}
                     min={0}
+                    disabled={this.props.cardType == 1 ? false : true}
                 />
             </div>
         )

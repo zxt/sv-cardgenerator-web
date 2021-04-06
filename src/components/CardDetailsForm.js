@@ -11,11 +11,26 @@ import CardArtUpload from './CardArtUpload.js';
 import CardBackgroundSelect from './CardBackgroundSelect.js';
 
 class CardDetailsForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            cardType: 1
+        }
+
+        this.handleCardTypeChange = this.handleCardTypeChange.bind(this);
+    }
+
+    handleCardTypeChange(value) {
+        this.setState({
+            cardType: value
+        })
+    }
+
     render() {
         return (
             <Form>
                 <Form.Item label="Card Type:" name="char_type" htmlFor="card-type-select">
-                    <CardTypeSelect />
+                    <CardTypeSelect onCardTypeChange={this.handleCardTypeChange} />
                 </Form.Item>
 
                 <Form.Item label="Card Name:" name="card_name" htmlFor="card_name">
@@ -39,11 +54,11 @@ class CardDetailsForm extends React.Component {
                 </Form.Item>
 
                 <Form.Item label="Base Stats:" name="base_stats" htmlFor="atk">
-                    <CardStatsInput name1="atk" placeholder1="Atk" name2="life" placeholder2="Def" />
+                    <CardStatsInput name1="atk" placeholder1="Atk" name2="life" placeholder2="Def" cardType={this.state.cardType} />
                 </Form.Item>
 
                 <Form.Item label="Evo Stats:" name="evo_stats" htmlFor="evo_atk">
-                    <CardStatsInput name1="evo_atk" placeholder1="Evo Atk" name2="evo_life" placeholder2="Evo Def" />
+                    <CardStatsInput name1="evo_atk" placeholder1="Evo Atk" name2="evo_life" placeholder2="Evo Def" cardType={this.state.cardType} />
                 </Form.Item>
 
                 <Form.Item label="Base Card Text:" name="skill_disc" htmlFor="card-text-textarea">
