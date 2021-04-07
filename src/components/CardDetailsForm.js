@@ -28,7 +28,7 @@ class CardDetailsForm extends React.Component {
 
     render() {
         return (
-            <Form>
+            <Form className="card-details-form-container">
                 <Form.Item label="Card Type:" name="char_type" htmlFor="card-type-select">
                     <CardTypeSelect onCardTypeChange={this.handleCardTypeChange} />
                 </Form.Item>

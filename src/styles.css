@@ -27,3 +27,12 @@
 .bg-thumbnail {
     padding: 5px;
 }
+
+.card-details-form-container {
+    width: 600px;
+    padding: 10px;
+}
+
+.card-art-upload-container {
+    width: 300px;
+}
