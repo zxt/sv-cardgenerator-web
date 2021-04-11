@@ -23,7 +23,8 @@ class CardBackgroundSelect extends React.Component {
         super(props);
         this.state = {
             isModalVisible: false,
-            selectedImg: null
+            selectedImg: null,
+            selectedImgIdx: null
         };
 
         this.bgImages = [bg_Castle, bg_DarkForest, bg_Darkstone, bg_Forest, bg_Hall,
@@ -34,6 +35,7 @@ class CardBackgroundSelect extends React.Component {
         this.showModal = this.showModal.bind(this);
         this.handleOk = this.handleOk.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
+        this.handleClear = this.handleClear.bind(this);
         this.handleBgSelect = this.handleBgSelect.bind(this);
     }
 
@@ -55,9 +57,17 @@ class CardBackgroundSelect extends React.Component {
         })
     }
 
-    handleBgSelect(img) {
+    handleClear() {
         this.setState({
-            selectedImg: img
+            selectedImg: null,
+            selectedImgIdx: null
+        })
+    }
+
+    handleBgSelect(idx, img_url) {
+        this.setState({
+            selectedImg: img_url,
+            selectedImgIdx: idx
         })
     }
 
@@ -65,17 +75,31 @@ class CardBackgroundSelect extends React.Component {
         return (
             <div>
                 <Button icon={<FileImageOutlined />} onClick={this.showModal}>Choose Background Image...</Button>
-                <Modal title="Choose Background Image" width={1000} visible={this.state.isModalVisible} onOk={this.handleOk} onCancel={this.handleCancel}>
+                <Modal title="Choose Background Image" 
+                        width={1000} 
+                        visible={this.state.isModalVisible} 
+                        onOk={this.handleOk} 
+                        onCancel={this.handleCancel}
+                        footer={[
+                            <Button key="clear" type="primary" danger onClick={this.handleClear}>
+                                Clear
+                            </Button>,
+                            <Button key="ok" type="primary" onClick={this.handleOk}>
+                                Ok
+                            </Button>
+                        ]}
+                >
                     {this.bgImages.map( (x, i) => 
-                        <Image className="bg-thumbnail" 
+                        <Image className={`bg-thumbnail ${this.state.selectedImgIdx === i && 'selected-bg-thumbnail'}`}
                                 preview={false} 
                                 width={150} 
                                 src={x} 
                                 key={i} 
-                                onClick={(e) => this.handleBgSelect(x, e)}
+                                onClick={(e) => this.handleBgSelect(i, x, e)}
                         />
                     )}
                 </Modal>
+                <Image src={this.state.selectedImg} width={400} />
             </div>
         )
     }

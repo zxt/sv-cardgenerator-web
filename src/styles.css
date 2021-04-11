@@ -36,3 +36,7 @@
 .card-art-upload-container {
     width: 300px;
 }
+
+.selected-bg-thumbnail {
+    border: 2px dashed #84b3f5;
+}
