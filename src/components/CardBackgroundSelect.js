@@ -23,7 +23,6 @@ class CardBackgroundSelect extends React.Component {
         super(props);
         this.state = {
             isModalVisible: false,
-            selectedImg: null,
             selectedImgIdx: null
         };
 
@@ -59,16 +58,16 @@ class CardBackgroundSelect extends React.Component {
 
     handleClear() {
         this.setState({
-            selectedImg: null,
             selectedImgIdx: null
         })
+        this.props.onBackgroundImgChange(null);
     }
 
     handleBgSelect(idx, img_url) {
         this.setState({
-            selectedImg: img_url,
             selectedImgIdx: idx
         })
+        this.props.onBackgroundImgChange(img_url);
     }
 
     render() {
@@ -99,7 +98,7 @@ class CardBackgroundSelect extends React.Component {
                         />
                     )}
                 </Modal>
-                <Image src={this.state.selectedImg} width={400} />
+                <Image src={this.props.bgImg} width={400} />
             </div>
         )
     }

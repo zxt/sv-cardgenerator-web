@@ -14,15 +14,23 @@ class CardDetailsForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cardType: 1
+            cardType: 1,
+            bgImg: null
         }
 
         this.handleCardTypeChange = this.handleCardTypeChange.bind(this);
+        this.handleBackgroundImgChange = this.handleBackgroundImgChange.bind(this);
     }
 
     handleCardTypeChange(value) {
         this.setState({
             cardType: value
+        })
+    }
+
+    handleBackgroundImgChange(img) {
+        this.setState({
+            bgImg: img
         })
     }
 
@@ -74,7 +82,7 @@ class CardDetailsForm extends React.Component {
                 </Form.Item>
 
                 <Form.Item>
-                    <CardBackgroundSelect />
+                    <CardBackgroundSelect bgImg={this.state.bgImg} onBackgroundImgChange={this.handleBackgroundImgChange} />
                 </Form.Item>
 
             </Form>
