@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Modal, Image } from 'antd';
 import { FileImageOutlined } from '@ant-design/icons';
+import UserUpload from './UserUpload';
 import bg_Castle from '../../public/templates/backgrounds/background_Castle.png';
 import bg_DarkForest from '../../public/templates/backgrounds/background_DarkForest.png';
 import bg_Darkstone from '../../public/templates/backgrounds/background_Darkstone.png';
@@ -23,7 +24,8 @@ class CardBackgroundSelect extends React.Component {
         super(props);
         this.state = {
             isModalVisible: false,
-            selectedImgIdx: null
+            selectedImgIdx: null,
+            userBgImg: null,
         };
 
         this.bgImages = [bg_Castle, bg_DarkForest, bg_Darkstone, bg_Forest, bg_Hall,
@@ -36,6 +38,7 @@ class CardBackgroundSelect extends React.Component {
         this.handleCancel = this.handleCancel.bind(this);
         this.handleClear = this.handleClear.bind(this);
         this.handleBgSelect = this.handleBgSelect.bind(this);
+        this.handleBgUpload = this.handleBgUpload.bind(this);
     }
 
     showModal() {
@@ -58,7 +61,8 @@ class CardBackgroundSelect extends React.Component {
 
     handleClear() {
         this.setState({
-            selectedImgIdx: null
+            selectedImgIdx: null,
+            userBgImg: null,
         })
         this.props.onBackgroundImgChange(null);
     }
@@ -66,6 +70,14 @@ class CardBackgroundSelect extends React.Component {
     handleBgSelect(idx, img_url) {
         this.setState({
             selectedImgIdx: idx
+        })
+        this.props.onBackgroundImgChange(img_url);
+    }
+
+    handleBgUpload(img_url) {
+        this.setState({
+            userBgImg: img_url,
+            selectedImgIdx: this.bgImages.length,
         })
         this.props.onBackgroundImgChange(img_url);
     }
@@ -97,6 +109,11 @@ class CardBackgroundSelect extends React.Component {
                                 onClick={(e) => this.handleBgSelect(i, x, e)}
                         />
                     )}
+                    <UserUpload 
+                        imgThumbnail={this.state.userBgImg}
+                        onUpload={this.handleBgUpload}
+                        selectedImgIdx={this.state.selectedImgIdx}
+                    />
                 </Modal>
                 <Image src={this.props.bgImg} width={400} />
             </div>

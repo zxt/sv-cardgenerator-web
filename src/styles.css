@@ -40,3 +40,12 @@
 .selected-bg-thumbnail {
     border: 2px dashed #84b3f5;
 }
+
+.user-bg-container > .ant-upload {
+    width: 150px;
+}
+
+.user-bg-img {
+    width: 100%;
+    height: 100%;
+}
