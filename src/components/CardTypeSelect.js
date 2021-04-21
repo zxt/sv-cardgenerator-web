@@ -1,28 +1,28 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Select } from 'antd';
 
 const { Option } = Select;
 
-class CardTypeSelect extends React.Component {
-    constructor(props) {
-        super(props);
+function CardTypeSelect(props) {
+    const [cardType, setCardType] = useState("1");
 
-        this.handleChange = this.handleChange.bind(this);
-    }
+    useEffect(() => {
+        props.onChange("1");
+    }, [])
 
-    handleChange(value) {
-        this.props.onCardTypeChange(value);
-    }
+    const handleChange = (newValue) => {
+        setCardType(newValue);
+        props.onCardTypeChange(newValue);
+        props.onChange(newValue);
+    };
 
-    render() {
-        return (
-            <Select defaultValue="1" style={{ width: 100 }} name="char_type" id="card-type-select" onChange={this.handleChange}>
-                <Option value="1">Follower</Option>
-                <Option value="2">Amulet</Option>
-                <Option value="4">Spell</Option>
-            </Select>
-        )
-    }
+    return (
+        <Select value={cardType} style={{ width: 100 }} name="char_type" id="card-type-select" onChange={handleChange}>
+            <Option value="1">Follower</Option>
+            <Option value="2">Amulet</Option>
+            <Option value="4">Spell</Option>
+        </Select>
+    )
 }
 
 export default CardTypeSelect;

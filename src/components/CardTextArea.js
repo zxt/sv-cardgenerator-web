@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Input } from 'antd';
 
 const { TextArea } = Input;
 
-class CardTextArea extends React.Component {
-    render() {
-        return (
-            <TextArea rows={5} style={{ width: 300 }} name={this.props.name} id={this.props.htmlID} placeholder={this.placeholder} />
-        )
+function CardTextArea(props) {
+
+    const handleChange = (newValue) => {
+        props.onChange(newValue);
     }
+
+    return (
+        <TextArea
+            rows={5}
+            style={{ width: 300 }}
+            name={props.name}
+            id={props.htmlID}
+            placeholder={props.placeholder} 
+            onChange={handleChange}
+        />
+    )
 }
 
 export default CardTextArea;

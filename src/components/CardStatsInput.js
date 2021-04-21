@@ -1,29 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { InputNumber } from 'antd';
 
-class CardStatsInput extends React.Component {
-    render() {
-        return (
-            <div>
-                <InputNumber
-                    type="number"
-                    id={this.props.name1}
-                    name={this.props.name1}
-                    placeholder={this.props.placeholder1}
-                    min={0}
-                    disabled={this.props.cardType == 1 ? false : true}
-                />
-                <InputNumber
-                    type="number"
-                    id={this.props.name2}
-                    name={this.props.name2}
-                    placeholder={this.props.placeholder2}
-                    min={0}
-                    disabled={this.props.cardType == 1 ? false : true}
-                />
-            </div>
-        )
-    }
+function CardStatsInput(props) {
+    useEffect(() => {
+        props.onChange({
+            [props.name1]: '',
+            [props.name2]: '',
+        });
+    }, []);
+
+    const handleChange1 = (newValue) => {
+        props.onChange({
+            ...props.value,
+            [props.name1]: newValue,
+        });
+    };
+
+    const handleChange2 = (newValue) => {
+        props.onChange({
+            ...props.value,
+            [props.name2]: newValue,
+        });
+    };
+
+    return (
+        <div>
+            <InputNumber
+                type="number"
+                id={props.name1}
+                name={props.name1}
+                placeholder={props.placeholder1}
+                min={0}
+                disabled={props.cardType == 1 ? false : true}
+                onChange={handleChange1}
+            />
+            <InputNumber
+                type="number"
+                id={props.name2}
+                name={props.name2}
+                placeholder={props.placeholder2}
+                min={0}
+                disabled={props.cardType == 1 ? false : true}
+                onChange={handleChange2}
+            />
+        </div>
+    )
 }
 
 export default CardStatsInput;

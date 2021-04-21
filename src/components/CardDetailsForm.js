@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'antd';
+import { Form, Button, Select } from 'antd';
 import CardTypeSelect from './CardTypeSelect.js';
 import CardInput from './CardInput.js';
 import CardCraftSelect from './CardCraftSelect.js';
@@ -20,6 +20,7 @@ class CardDetailsForm extends React.Component {
 
         this.handleCardTypeChange = this.handleCardTypeChange.bind(this);
         this.handleBackgroundImgChange = this.handleBackgroundImgChange.bind(this);
+        this.onFinish = this.onFinish.bind(this);
     }
 
     handleCardTypeChange(value) {
@@ -34,15 +35,20 @@ class CardDetailsForm extends React.Component {
         })
     }
 
+    onFinish(values) {
+        console.log('values:', values);
+    }
+
     render() {
+
         return (
-            <Form className="card-details-form-container">
+            <Form className="card-details-form-container" onFinish={this.onFinish}>
                 <Form.Item label="Card Type:" name="char_type" htmlFor="card-type-select">
                     <CardTypeSelect onCardTypeChange={this.handleCardTypeChange} />
                 </Form.Item>
 
                 <Form.Item label="Card Name:" name="card_name" htmlFor="card_name">
-                    <CardInput name="card_name" placeholder="name" />
+                    <CardInput placeholder="name" />
                 </Form.Item>
 
                 <Form.Item label="Craft:" name="clan" htmlFor="card-craft-select">
@@ -50,7 +56,7 @@ class CardDetailsForm extends React.Component {
                 </Form.Item>
 
                 <Form.Item label="Trait:" name="tribe_name" htmlFor="tribe_name">
-                    <CardInput name="tribe_name" placeholder="e.g., Commander, Machina, etc." />
+                    <CardInput placeholder="e.g., Commander, Machina, etc." />
                 </Form.Item>
 
                 <Form.Item label="Rarity:" name="rarity" htmlFor="card-rarity-select">
@@ -77,12 +83,18 @@ class CardDetailsForm extends React.Component {
                     <CardTextArea name="evo_skill_disc" htmlID="card-evotext-textarea" placeholder="Evo Card Text" />
                 </Form.Item>
 
-                <Form.Item>
+                <Form.Item name="base_img">
                     <CardArtUpload />
                 </Form.Item>
 
-                <Form.Item>
+                <Form.Item name="background_img">
                     <CardBackgroundSelect bgImg={this.state.bgImg} onBackgroundImgChange={this.handleBackgroundImgChange} />
+                </Form.Item>
+
+                <Form.Item>
+                    <Button type="primary" htmlType="submit">
+                        Generate
+                    </Button>
                 </Form.Item>
 
             </Form>

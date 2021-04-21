@@ -55,6 +55,7 @@ class UserUpload extends React.Component {
                 showUploadList={false}
                 beforeUpload={beforeUpload}
                 onChange={this.handleChange}
+                customRequest={() => false} // override default upload done by antd
             >
                 {imageUrl ? <img src={imageUrl} className={`user-bg-img ${this.props.selectedImgIdx === userBgIdx && 'selected-bg-thumbnail'}`} /> : uploadButton}
             </Upload>

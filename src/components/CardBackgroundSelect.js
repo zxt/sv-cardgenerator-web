@@ -28,10 +28,72 @@ class CardBackgroundSelect extends React.Component {
             userBgImg: null,
         };
 
-        this.bgImages = [bg_Castle, bg_DarkForest, bg_Darkstone, bg_Forest, bg_Hall,
-            bg_Laboratory, bg_Lake, bg_Lake_Night, bg_Mansion, bg_Map,
-            bg_Mausoleum, bg_Morning_star, bg_Mountains, bg_Track,
-            bg_Track_Morning, bg_Track_Night];
+        this.bgImages = [
+                            {
+                                "name": "background_Castle.png",
+                                "src": bg_Castle,
+                            },
+                            {
+                                "name": "background_DarkForest.png",
+                                "src": bg_DarkForest,
+                            },
+                            {
+                                "name": "background_Darkstone.png",
+                                "src": bg_Darkstone,
+                            },
+                            {
+                                "name": "background_Forest.png",
+                                "src": bg_Forest,
+                            },
+                            {
+                                "name": "background_Hall.png",
+                                "src": bg_Hall,
+                            },
+                            {
+                                "name": "background_Laboratory.png",
+                                "src": bg_Laboratory, 
+                            },
+                            {
+                                "name": "background_Lake.png",
+                                "src": bg_Lake,
+                            },
+                            {
+                                "name": "background_Lake_Night.png",
+                                "src": bg_Lake_Night,
+                            },
+                            {
+                                "name": "background_Mansion.png",
+                                "src": bg_Mansion, 
+                            },
+                            {
+                                "name": "background_Map.png",
+                                "src": bg_Map,
+                            },
+                            {
+                                "name": "background_Mausoleum.png",
+                                "src": bg_Mausoleum,
+                            },
+                            {
+                                "name": "background_Morning_Star.png",
+                                "src": bg_Morning_star,
+                            },
+                            {
+                                "name": "background_Mountains.png",
+                                "src": bg_Mountains,
+                            },
+                            {
+                                "name": "background_Track.png",
+                                "src": bg_Track,
+                            },
+                            {
+                                "name": "background_Track_Morning.png",
+                                "src": bg_Track_Morning,
+                            },
+                            {
+                                "name": "background_Track_Night.png",
+                                "src": bg_Track_Night
+                            },
+                        ];
 
         this.showModal = this.showModal.bind(this);
         this.handleOk = this.handleOk.bind(this);
@@ -65,21 +127,24 @@ class CardBackgroundSelect extends React.Component {
             userBgImg: null,
         })
         this.props.onBackgroundImgChange(null);
+        this.props.onChange(null);
     }
 
-    handleBgSelect(idx, img_url) {
+    handleBgSelect(idx, img) {
         this.setState({
             selectedImgIdx: idx
         })
-        this.props.onBackgroundImgChange(img_url);
+        this.props.onBackgroundImgChange(img.src);
+        this.props.onChange(img.name);
     }
 
-    handleBgUpload(img_url) {
+    handleBgUpload(img_dataurl) {
         this.setState({
-            userBgImg: img_url,
+            userBgImg: img_dataurl,
             selectedImgIdx: this.bgImages.length,
         })
-        this.props.onBackgroundImgChange(img_url);
+        this.props.onBackgroundImgChange(img_dataurl);
+        this.props.onChange(img_dataurl);
     }
 
     render() {
@@ -100,13 +165,13 @@ class CardBackgroundSelect extends React.Component {
                             </Button>
                         ]}
                 >
-                    {this.bgImages.map( (x, i) => 
+                    {this.bgImages.map( (v, i) => 
                         <Image className={`bg-thumbnail ${this.state.selectedImgIdx === i && 'selected-bg-thumbnail'}`}
                                 preview={false} 
                                 width={150} 
-                                src={x} 
+                                src={v.src}
                                 key={i} 
-                                onClick={(e) => this.handleBgSelect(i, x, e)}
+                                onClick={(e) => this.handleBgSelect(i, v, e)}
                         />
                     )}
                     <UserUpload 

@@ -1,18 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Input } from 'antd';
 
-class CardInput extends React.Component {
-    render() {
-        return (
-            <Input
-                type="text"
-                style={{ width: 300 }}
-                name={this.props.name}
-                id={this.props.name}
-                placeholder={this.props.placeholder}
-            />
-        )
+function CardInput(props) {
+    useEffect(() => {
+        props.onChange('');
+    }, [])
+
+    const handleChange = (newValue) => {
+        props.onChange(newValue);
     }
+
+    return (
+        <Input
+            type="text"
+            style={{ width: 300 }}
+            placeholder={props.placeholder}
+            onChange={handleChange}
+        />
+    )
 }
 
 export default CardInput;
