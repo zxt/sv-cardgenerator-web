@@ -67,11 +67,11 @@ class CardDetailsForm extends React.Component {
                     <CardCostInput />
                 </Form.Item>
 
-                <Form.Item label="Base Stats:" name="base_stats" htmlFor="atk">
+                <Form.Item label="Base Stats:" name="base_stats" htmlFor="atk" className={this.state.cardType != 1 ? 'hidden': ''}>
                     <CardStatsInput name1="atk" placeholder1="Atk" name2="life" placeholder2="Def" cardType={this.state.cardType} />
                 </Form.Item>
 
-                <Form.Item label="Evo Stats:" name="evo_stats" htmlFor="evo_atk">
+                <Form.Item label="Evo Stats:" name="evo_stats" htmlFor="evo_atk" className={this.state.cardType != 1 ? 'hidden': ''}>
                     <CardStatsInput name1="evo_atk" placeholder1="Evo Atk" name2="evo_life" placeholder2="Evo Def" cardType={this.state.cardType} />
                 </Form.Item>
 
@@ -79,7 +79,7 @@ class CardDetailsForm extends React.Component {
                     <CardTextArea name="skill_disc" htmlID="card-text-textarea" placeholder="Base Card Text" />
                 </Form.Item>
 
-                <Form.Item label="Evo Card Text:" name="evo_skill_disc" htmlFor="card-evotext-textarea">
+                <Form.Item label="Evo Card Text:" name="evo_skill_disc" htmlFor="card-evotext-textarea" className={this.state.cardType != 1 ? 'hidden': ''}>
                     <CardTextArea name="evo_skill_disc" htmlID="card-evotext-textarea" placeholder="Evo Card Text" />
                 </Form.Item>
 
