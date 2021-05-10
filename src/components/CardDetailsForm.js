@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button, Select } from 'antd';
+import { Form, Button } from 'antd';
 import CardTypeSelect from './CardTypeSelect.js';
 import CardInput from './CardInput.js';
 import CardCraftSelect from './CardCraftSelect.js';
@@ -20,7 +20,7 @@ class CardDetailsForm extends React.Component {
 
         this.handleCardTypeChange = this.handleCardTypeChange.bind(this);
         this.handleBackgroundImgChange = this.handleBackgroundImgChange.bind(this);
-        this.onFinish = this.onFinish.bind(this);
+        this.handleFinish = this.handleFinish.bind(this);
     }
 
     handleCardTypeChange(value) {
@@ -35,14 +35,47 @@ class CardDetailsForm extends React.Component {
         })
     }
 
-    onFinish(values) {
-        console.log('values:', values);
+    handleFinish(values) {
+        values = {
+            ...values,
+            'atk': values.base_stats.atk !== '' ? values.base_stats.atk : 0,
+            'life': values.base_stats.life !== '' ? values.base_stats.life : 0,
+            'evo_atk': values.evo_stats.evo_atk !== '' ? values.evo_stats.evo_atk : 0,
+            'evo_life': values.evo_stats.evo_life !== '' ? values.evo_stats.evo_life : 0,
+        };
+        delete values.base_stats;
+        delete values.evo_stats;
+        
+        if(values.base_img?.status == "removed") {
+            values.base_img = null;
+        }
+
+        if(values.skill_disc === undefined) {
+            values.skill_disc = '';
+        }
+        if(values.evo_skill_disc === undefined) {
+            values.evo_skill_disc = '';
+        }
+
+        let formData = new FormData();
+        for(let key in values) {
+            formData.append(key, values[key]);
+        }
+
+        const reqInit = {
+            body: formData,
+            method: "POST",
+        };
+
+        fetch("api/generate", reqInit)
+        .then(res => res.json())
+        .then(res => this.props.onGenerateCard(res.card_url));
     }
 
     render() {
 
         return (
-            <Form className="card-details-form-container" onFinish={this.onFinish}>
+            <Form className="card-details-form-container" onFinish={this.handleFinish}>
                 <Form.Item label="Card Type:" name="char_type" htmlFor="card-type-select">
                     <CardTypeSelect onCardTypeChange={this.handleCardTypeChange} />
                 </Form.Item>
