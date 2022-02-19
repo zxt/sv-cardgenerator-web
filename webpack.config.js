@@ -9,7 +9,7 @@ module.exports = {
         clean: true,
     },
     devServer: {
-        contentBase: './dist',
+        static: ['dist'],
         proxy: {
             '/api': 'http://localhost:5000/',
         }
